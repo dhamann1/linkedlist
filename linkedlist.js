@@ -9,7 +9,7 @@ function Node(value, next, prev) {
   this.prev = prev;
 }
 
-LinkedList.prototype.addToHead = function (value) {
+LinkedList.prototype.addToHead = function(value) {
   var newNode = new Node(value, this.head, null);
   if (this.head) {
     this.head.prev = newNode;
@@ -19,7 +19,7 @@ LinkedList.prototype.addToHead = function (value) {
   this.head = newNode;
 }
 
-LinkedList.prototype.addToTail = function (value) {
+LinkedList.prototype.addToTail = function(value) {
   var newNode = new Node(value, null, this.tail);
   if (this.tail) {
     this.tail.next = newNode;
@@ -27,4 +27,18 @@ LinkedList.prototype.addToTail = function (value) {
     this.head = newNode;
   }
   this.tail = newNode
+}
+
+LinkedList.prototype.removeHead = function() {
+  if (!this.head) {
+    return null;
+  }
+  var val = this.head.value;
+  this.head = this.head.next;
+  if (this.head) {
+    this.head.prev = null;
+  } else {
+      this.tail = null;
+  }
+  return val;
 }
